@@ -12,9 +12,24 @@ import School from "../../images/SchoolWb.png";
 import Social from "../../images/Social.png";
 import stackoverflow from "../../images/Stackoverflow.png";
 import "animate.css";
-
+import { useInView } from 'react-intersection-observer';
+import { useEffect, useState } from "react";
 
 const Testimonials = () => {
+
+  const [animated, setAnimated] = useState(false);
+
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0, 
+  });
+
+  useEffect(() => {
+    if (inView) {
+      setAnimated(true);
+    }
+  }, [inView]);
+
 
   const settings = {
     dots: true,
@@ -83,8 +98,9 @@ const Testimonials = () => {
 
   return (
     <section
+    ref={ref}
       id="testimonial"
-      className=" animate__animated animate__fadeInLeft animate__slow"
+      className={`${animated ? 'animate__animated animate__fadeInLeft animate__slow' : " "}`}
     >
       <Slider {...settings}>
         {" "}

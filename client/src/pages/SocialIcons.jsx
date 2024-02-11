@@ -6,13 +6,30 @@ import linkedInImage from "../images/linkedin.png";
 import youtubeImage from "../images/youtube.png";
 import "animate.css";
 import { useMediaQuery } from "react-responsive";
+import { useInView } from 'react-intersection-observer';
+import { useEffect, useState } from "react";
 
 const SocialIcons = () => {
+
   const isNonMobileScreens = useMediaQuery({
     query: "(min-width:1000px)",
   });
+
+  const [animated, setAnimated] = useState(false);
+
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0, 
+  });
+
+  useEffect(() => {
+    if (inView) {
+      setAnimated(true);
+    }
+  }, [inView]);
+
   return (
-    <div className="socialIcons animate__animated animate__slideInRight animate__slow">
+    <div  ref={ref}  className={`${ animated ? 'socialIcons animate__animated animate__slideInRight animate__slow' : " "}`}>
       <a href="https://www.facebook.com/Wajahat.hussain.bhat">
         {" "}
         <img

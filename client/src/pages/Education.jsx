@@ -6,8 +6,24 @@ import "animate.css";
 import e1 from "../images/nchs.png";
 import e2 from "../images/school2.png";
 import e3 from "../images/dpu.png";
+import { useInView } from 'react-intersection-observer';
+import { useEffect, useState } from "react";
 
 const Education = () => {
+
+  const [animated, setAnimated] = useState(false);
+
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0, 
+  });
+
+  useEffect(() => {
+    if (inView) {
+      setAnimated(true);
+    }
+  }, [inView]);
+
   const isNonMobileScreens = useMediaQuery({
     query: "(min-width:1000px)",
   });
@@ -62,7 +78,7 @@ const Education = () => {
   };
 
   return (
-    <div className="education" style={{ marginTop: !isNonMobileScreens && "2rem" }}>
+    <div ref={ref} className="education" style={{ marginTop: !isNonMobileScreens && "2rem" }}>
       <div
         className="certification-title "
         style={{ fontSize: !isNonMobileScreens && "0.8rem" , width: !isNonMobileScreens && "9rem"}}
@@ -71,7 +87,7 @@ const Education = () => {
       </div>{" "}
       <Slider
         {...settings}
-        className="animate__animated animate__fadeInLeft animate__slow"
+        className={`${animated ? 'animate__animated animate__fadeInLeft animate__slow' : ""}`}
       >
         {" "}
         {educationData.map((edu, index) => (

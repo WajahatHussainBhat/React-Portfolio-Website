@@ -3,11 +3,28 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "animate.css";
+import { useInView } from 'react-intersection-observer';
+import { useEffect, useState } from "react";
 
 const Certifications = () => {
+
   const isNonMobileScreens = useMediaQuery({
     query: "(min-width:1000px)",
   });
+
+  const [animated, setAnimated] = useState(false);
+
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0, 
+  });
+
+  useEffect(() => {
+    if (inView) {
+      setAnimated(true);
+    }
+  }, [inView]);
+
 
   const certificationData = [
     {
@@ -67,7 +84,7 @@ const Certifications = () => {
   };
 
   return (
-    <div  className="certifications">
+    <div ref={ref}  className="certifications">
       <div
         className="certification-title "
         style={{ fontSize: !isNonMobileScreens && "0.8rem" , width: !isNonMobileScreens && "9rem"}}
@@ -76,7 +93,7 @@ const Certifications = () => {
       </div>{" "}
       <Slider
         {...settings}
-        className="animate__animated animate__fadeInRight animate__slow"
+        className={`${animated ? 'animate__animated animate__fadeInRight animate__slow' : " "}`}
       >
         {" "}
         {certificationData.map((cert, index) => (

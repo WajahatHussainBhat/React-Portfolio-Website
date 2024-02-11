@@ -13,6 +13,8 @@ import s8 from "../images/mongodb.png";
 import s9 from "../images/express.png";
 import s10 from "../images/nodejs.png";
 import "animate.css";
+import { useInView } from 'react-intersection-observer';
+import { useEffect, useState } from "react";
 
 const skillsData = [
   { image: s1, description: "C" },
@@ -31,6 +33,19 @@ const Skills = () => {
   const isNonMobileScreens = useMediaQuery({
     query: "(min-width:1000px)",
   });
+
+  const [animated, setAnimated] = useState(false);
+
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0, 
+  });
+
+  useEffect(() => {
+    if (inView) {
+      setAnimated(true);
+    }
+  }, [inView]);
 
   const settings = {
     dots: true,
@@ -55,14 +70,14 @@ const Skills = () => {
   };
 
   return (
-    <div id="skills" className="skills "  style={{ margin: !isNonMobileScreens && "2rem 0"}}>
+    <div ref={ref} id="skills" className="skills "  style={{ margin: !isNonMobileScreens && "2rem 0"}}>
       <div
         className="about-title"
         style={{ fontSize: !isNonMobileScreens && "0.8rem", width: !isNonMobileScreens && "6rem"}}
       >
         Skills{" "}
       </div>{" "}
-      <div className="skill-cards animate__animated animate__fadeInUp animate__slow">
+      <div className={`${animated ? 'skill-cards animate__animated animate__fadeInUp animate__slow' : ""}`}>
         <Slider {...settings}>
           {" "}
           {skillsData.map((skill, index) => (
