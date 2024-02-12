@@ -1,0 +1,5 @@
+services:
+  - name: React-Portfolio
+    type: web
+    buildCommand: npm install
+    startCommand: npm start
