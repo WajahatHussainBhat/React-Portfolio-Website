@@ -19,7 +19,7 @@ const SocialIcons = () => {
 
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0, 
+    threshold: 0.2, 
   });
 
   useEffect(() => {

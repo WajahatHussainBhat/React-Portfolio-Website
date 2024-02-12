@@ -56,23 +56,23 @@ const Header = () => {
             <ul className="menuItems">
               <li>
                 {" "}
-                <a> Home </a>{" "}
+                <a href="#home"> Home </a>{" "}
               </li>{" "}
               <li>
                 {" "}
-                <a> About </a>{" "}
+                <a href="#about"> About </a>{" "}
               </li>{" "}
               <li>
                 {" "}
-                <a> Skills </a>{" "}
+                <a href="#skills"> Skills </a>{" "}
               </li>{" "}
               <li>
                 {" "}
-                <a> Projects </a>{" "}
+                <a href="#projects"> Projects </a>{" "}
               </li>{" "}
               <li>
                 {" "}
-                <a> Contact Us </a>{" "}
+                <a href="#contact"> Contact Us </a>{" "}
               </li>{" "}
             </ul>{" "}
           </div>{" "}

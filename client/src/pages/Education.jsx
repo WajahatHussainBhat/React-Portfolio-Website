@@ -15,7 +15,7 @@ const Education = () => {
 
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0, 
+    threshold: 0.2, 
   });
 
   useEffect(() => {
@@ -93,10 +93,10 @@ const Education = () => {
         {educationData.map((edu, index) => (
           <div className="education-card" key={index}>
             <img src={edu.img} alt="" />
-            <div className="edu-institute"> {edu.institute} </div>{" "}
-            <div className="edu-date"> {edu.date} </div>{" "}
-            <div className="edu-cgpa"> CGPA / Percentage: {edu.cgpa} </div>{" "}
-            <div className="degree-info"> {edu.degreeInfo} </div>{" "}
+            <div className="edu-institute" style={{ fontSize: !isNonMobileScreens && "1rem"}}> {edu.institute} </div>{" "}
+            <div className="edu-date" style={{ fontSize: !isNonMobileScreens && "1rem", marginTop:!isNonMobileScreens && "0.2rem"}}> {edu.date} </div>{" "}
+            <div className="edu-cgpa" style={{ fontSize: !isNonMobileScreens && "1rem", marginTop: !isNonMobileScreens && "0.2rem"}}> CGPA / Percentage: {edu.cgpa} </div>{" "}
+            <div className="degree-info" style={{ fontSize: !isNonMobileScreens && "0.8rem", marginTop:!isNonMobileScreens && "0.4rem"}}> {edu.degreeInfo} </div>{" "}
           </div>
         ))}{" "}
       </Slider>{" "}

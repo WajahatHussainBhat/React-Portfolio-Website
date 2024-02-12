@@ -4,7 +4,7 @@ import myImage from "../images/myImage.png";
 
 const Home = () => {
   return (
-    <div className="home">
+    <div id="home" className="home">
       <div className="home-info animate__animated animate__fadeInLeft animate__slow">
         Hello!I 'm <br />{" "}
         <span className="home-info-name"> Wajahat Hussain </span> <br />

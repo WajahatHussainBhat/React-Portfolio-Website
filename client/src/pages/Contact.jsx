@@ -18,7 +18,7 @@ const Contact = () => {
 
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0, 
+    threshold: 0.2, 
   });
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const Contact = () => {
         >
           Contact{" "}
         </div>{" "}
-        <p className={`${animated ?' contact-title2 animate__animated  animate__fadeInRight animate__slow' : ""}`}>
+        <p className={`${animated ?' contact-title2 animate__animated  animate__fadeInRight animate__slow' : ""}`} style={{fontSize: !isNonMobileScreens && ""}}>
           want to get in touch? Contact me on any of the platforms
         </p>
         <h1 className={`${animated ?'contact-title3  animate__animated animate__fadeInBottomLeft animate__slow' : ""}`}>
